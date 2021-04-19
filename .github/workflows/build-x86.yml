@@ -97,12 +97,6 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
     
-    #new add
-    - name: Kernel Config
-      id: kconfig
-      run: |
-        mkdir -p openwrt/target/linux/x86/
-        [ -e $KERNEL_FILE ] && mv $KERNEL_FILE openwrt/target/linux/x86/
         
     - name: Compile the firmware
       id: compile
