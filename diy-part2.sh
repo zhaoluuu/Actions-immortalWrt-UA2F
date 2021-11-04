@@ -10,5 +10,14 @@
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
 
+# CONFIG_NETFILTER=y
+# CONFIG_NETFILTER_NETLINK=y
+# CONFIG_NETFILTER_NETLINK_GLUE_CT=y
+# CONFIG_NETFILTER_NETLINK_LOG=y
+# CONFIG_NF_CONNTRACK=y
+# CONFIG_NF_CT_NETLINK=y
+
 # Modify default IP
 #sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
+target=$(grep "^CONFIG_TARGET" .config --max-count=1 | awk -F "=" '{print $1}' | awk -F "_" '{print $3}')
+echo -e "\nCONFIG_NETFILTER_NETLINK_GLUE_CT=y" >> target/linux/$target/config*
